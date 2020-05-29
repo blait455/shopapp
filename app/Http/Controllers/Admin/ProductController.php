@@ -9,7 +9,6 @@ use App\Contracts\ProductContract;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\StoreProductFormRequest;
 
-
 class ProductController extends BaseController
 {
     protected $brandRepository;
@@ -79,6 +78,4 @@ class ProductController extends BaseController
         }
         return $this->responseRedirect('admin.products.index', 'Product updated successfully' ,'success',false, false);
     }
-
-    
 }

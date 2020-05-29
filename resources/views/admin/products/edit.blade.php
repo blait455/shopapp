@@ -1,11 +1,8 @@
 @extends('admin.app')
-
+@section('title') {{ $pageTitle }} @endsection
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.css') }}"/>
 @endsection
-
-@section('title') {{ $pageTitle }} @endsection
-
 @section('content')
     <div class="app-title">
         <div>
@@ -19,6 +16,7 @@
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
                     <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Images</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Attributes</a></li>
                 </ul>
             </div>
         </div>
@@ -114,14 +112,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="special_price">Special Price</label>
+                                            <label class="control-label" for="sale_price">Special Price</label>
                                             <input
                                                 class="form-control"
                                                 type="text"
                                                 placeholder="Enter product special price"
-                                                id="special_price"
-                                                name="special_price"
-                                                value="{{ old('special_price', $product->special_price) }}"
+                                                id="sale_price"
+                                                name="sale_price"
+                                                value="{{ old('sale_price', $product->sale_price) }}"
                                             />
                                         </div>
                                     </div>
@@ -197,7 +195,6 @@
                         </form>
                     </div>
                 </div>
-
                 <div class="tab-pane" id="images">
                     <div class="tile">
                         <h3 class="tile-title">Upload Image</h3>
@@ -238,25 +235,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane" id="attributes">
+                    <product-attributes :productid="{{ $product->id }}"></product-attributes>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 @push('scripts')
     <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
-    <script>
-        $( document ).ready(function() {
-            $('#categories').select2();
-        });
-    </script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/js/app.js') }}"></script>
     <script>
         Dropzone.autoDiscover = false;
-    
         $( document ).ready(function() {
             $('#categories').select2();
-    
             let myDropzone = new Dropzone("#dropzone", {
                 paramName: "image",
                 addRemoveLinks: false,

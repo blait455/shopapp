@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title') {{ $pageTitle }} @endsection
-@section('content')
+=@section('content')
     <div class="app-title">
         <div>
             <h1><i class="fa fa-shopping-bag"></i> {{ $pageTitle }} - {{ $subTitle }}</h1>
